@@ -11,29 +11,33 @@ _Please enter your project information below for your capstone project idea and 
 - 
 
 #### Features we MUST include
-- 
+- score count for every object avoided
+- game loop
 
 #### Feature we would like to include
-- 
+- moving background
+- obstacle complexity (ex. other dinosaur flying towards player avatar)
 
 #### How will you incoporate each of the following:
 **Module 1 - Variables and Output**
-- 
-- 
+- print/ output score after game (ex. "Your score is " + gameScore)
+- use for ASCII?
+
 **Module 2 - Object Orientation and Inputs**
-- user input on continuing game rounds 
-- 
+- game loop
+
 **Module 3 - Math, Returns, and/or Constructors**
 - score keeping
-- 
+
 **Module 4/5 - Conditionals and Loops**
 - game loop (multiple rounds)
-- 
+- score keeping (ex. if obstacle if avoided, add a point to the score; else: game over)
+
 **Module 6/7 - Arrays OR ArrayLists**
 - score keeping
 - 
+
 **Module 8 - Optional: 2D Arrays**
-- 
 - 
 
 #### Language, Code, Platform you plan to use?
