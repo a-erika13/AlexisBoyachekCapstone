@@ -1,15 +1,8 @@
-Dino[] avatarGroup;
-int p = 0;
-
-void setup(){
-    size(1280, 720);
-    background(154, 206, 235)
-    avatarGroup = new Dino()
-}
+//Clicky Dinosaur Capstone Final Project AEB
+double dinoSize = 50
+double dinoX = 65
+double dinoY = 0
 
 void draw() {
     background(154, 206, 235);
-    for (int i = 0; i < p; i++){
-        //
-    }
 }
