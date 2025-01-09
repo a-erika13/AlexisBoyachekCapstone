@@ -1,8 +1,0 @@
-Dino[] avatarGroup;
-int pos = 0;
-
-void setup(){
-    size(1280, 720);
-    background(154, 206, 235);
-    avatarGroup = new Dino(1);
-}
