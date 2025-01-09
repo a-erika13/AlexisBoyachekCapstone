@@ -6,3 +6,4 @@ double dinoY = 0
 void draw() {
     background(154, 206, 235);
 }
+//hi
