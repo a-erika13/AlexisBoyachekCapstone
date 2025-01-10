@@ -46,3 +46,6 @@ void gameOver(){
     if (gameOver = true){
         background(0,0,0); //draw out game over?
     }
+}
+//get() for color hit on object
+//enemy aas own object
