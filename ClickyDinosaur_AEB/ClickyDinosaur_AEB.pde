@@ -26,20 +26,21 @@ int gameScore = 0;
 
 void setup() {
     size(1280, 720);
+    background(154, 206, 235);
     enemies = new ArrayList<cactus>();
 }
 
 void draw() {
-    background(154, 206, 235);
     //ground
     line(0, 350, width, 350);
-    //fill ground as a grey color later
+    // (fill ground as a grey color later)
     //fill(0);
     //rect(1280, 200, 1280, 300);
     
-      //temporary dino
+    //temporary dino
     fill(0, 255, 0);
     //dino head
+    //make dino drawing itself its own function
     rect(dinoX, 250, dinoSize, dinoSize);
     dVelocity += dGravity;
     dinoY += dVelocity;
