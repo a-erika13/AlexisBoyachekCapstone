@@ -11,7 +11,6 @@ float dinoX = 65;
 float dinoY = 300;
 float dVelocity = 0;
 float dinoJump = -10;
-float gravity = 1;
 boolean isDinoJumping = false; //determines if game continues (dino isn't jumping and hits obstacle, game over)
 boolean gameOver = false;
 int gameScore = 0;
@@ -28,7 +27,7 @@ void draw() {
       //temp dino
     fill(255, 255, 255);
     rect(dinoX, dinoY, dinoSize, dinoSize);
-    dVelocity += gravity;
+    dVelocity += dGravity;
     dinoY += dVelocity;
     if (dinoY >= 300){
       dinoY = 300;
