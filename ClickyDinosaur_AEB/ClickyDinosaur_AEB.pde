@@ -3,6 +3,7 @@
 //Returns the number of milliseconds (thousandths of a second) since starting the sketch. This information is often used for timing animation sequences.
 //Clicky Dinosaur Capstone Final Project AEB
 // draw dino later?
+import java.util.*;
 ArrayList<cactus> enemies;
 float groundY = 200;
 
@@ -15,8 +16,8 @@ float dinoJump = -10;
 boolean isDinoJumping = false; //determines if game continues (dino isn't jumping and hits obstacle, game over)
 
 float cactiX;
-float cactiY;
-float cactiSize = 5;
+float cactiY = 300;
+float cactiSize = 20;
 float cVelocity = 5;
 
 float mls = millis();
@@ -56,9 +57,13 @@ void draw() {
       text("Score" + gameScore, 10, 20);
       
       //every 20 seconds, speed increases by 1
+      //for loop instead?
       if (mls == 20000){
         dVelocity++;
       }
+      fill(150, 0, 0);
+      rect(cactiX, cactiY, cactiSize, 50);
+      
     }
 
 void keyPressed(){
