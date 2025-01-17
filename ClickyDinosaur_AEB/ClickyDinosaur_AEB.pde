@@ -15,15 +15,15 @@ float dVelocity = 0;
 float dinoJump = -10;
 boolean isDinoJumping = false; //determines if game continues (dino isn't jumping and hits obstacle, game over)
 
-float cactiX = 1280;
-float cactiY = 300;
-float cactiSize = 20;
-float cVelocity = 5;
+//float cactiX = 1280;
+//float cactiY = 300;
+//float cactiSize = 20;
+//float cVelocity = 5;
 
-float mls = millis();
+//float mls = millis();
 
 boolean gameOver = false;
-int gameScore = 0;
+//int gameScore = 0;
 
 void setup() {
     size(1280, 720);
@@ -33,13 +33,14 @@ void setup() {
 
 void draw() 
 {
+    background(154, 206, 235);
     //ground
     line(0, 350, width, 350);
     
     //scoreboard for each object avoided
-    fill(0);
-    textSize(30);
-    text("Score" + gameScore, 10, 20);
+    //fill(0);
+    //textSize(30);
+    //text("Score" + gameScore, 10, 20);
     
     //dino avatar
     fill(0, 255, 0);
@@ -54,25 +55,21 @@ void draw()
     }
      
       //draw cactus
-      fill(150, 0, 0);
-      rect(cactiX, cactiY, cactiSize, 50);
-      cactiX -= cVelocity;
+      //fill(150, 0, 0);
+      //rect(cactiX, cactiY, cactiSize, 50);
+      //cactiX -= cVelocity;
       
-      if (cactiX <= 0)
-      {
-      
-      }
+      //if (cactiX <= 0){}
       
       
       //every 20 seconds, calti speed increases by 1
-      for (int i = 0; i > 100; i++)
-      {
-        if (mls == 20000)
-        {
-        cVelocity++;
-        }
-      }
+      //for (int i = 0; i > 100; i++) {
+        //if (mls == 20000){
+       // cVelocity++;
+        //}
+     // }
 }
+
 
 void keyPressed()
 {
@@ -82,8 +79,9 @@ void keyPressed()
   }
 }
 
-//class cactus{}
-
+class cactus{
+  
+}
 //get() or set() function to check for enemies
   //key pressed boolean or key pressed()?
 
