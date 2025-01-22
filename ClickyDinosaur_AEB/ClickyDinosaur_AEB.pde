@@ -1,10 +1,10 @@
 // REMINDER! pull orgin BEFORE starting to work
-// millis() function (use to increase difficulty as game continues)
-//Returns the number of milliseconds (thousandths of a second) since starting the sketch. This information is often used for timing animation sequences.
 //Clicky Dinosaur Capstone Final Project AEB
-// draw dino later?
+
+//import all Java utilities just in case
 import java.util.*;
 
+//declare array list for enemies
 ArrayList<Cactus> enemies;
 
 float groundY = 200;
@@ -73,6 +73,8 @@ void crash()
 
   }
 }
+
+//checking for the point avatar and enemy could collide
   boolean rectIntersect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) 
   {
   return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
