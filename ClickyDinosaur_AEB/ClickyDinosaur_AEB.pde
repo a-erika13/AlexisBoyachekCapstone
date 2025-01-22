@@ -9,18 +9,19 @@ ArrayList<Cactus> enemies;
 
 float groundY = 200;
 
-float dGravity = 1;
+float dGravity = 0.5;
 float dinoSize = 50;
 float dinoX = 65;
 float dinoY = 300;
 float dVelocity = 0;
-float dinoJump = -10;
+float dinoJump = -15;
 boolean isDinoJumping = false; //determines if game continues (dino isn't jumping and hits obstacle, game over)
 
 boolean gameOver = false;
 int gameScore = 0;
 
-void setup() {
+void setup() 
+{
     size(1280, 720);
     background(154, 206, 235);
     enemies = new ArrayList<Cactus>();
@@ -34,10 +35,23 @@ void draw()
     //ground
     line(0, 350, width, 350);
     
-    //scoreboard for each object avoided
+    //scoreboard for time in game
     fill(0);
     textSize(30);
     text("Score" + gameScore, 10, 30);
+    if(!gameOver)
+    {
+      gameScore++;
+    }
+    
+    else
+    {
+      fill(255, 0, 0);
+      textSize(50);
+      text("r to reset game", width /4-80, height /2);
+      
+    }
+    
     
     if(!gameOver)
     {
@@ -54,11 +68,25 @@ void draw()
 //avatar jumps when space bar is pressed
 void keyPressed()
 {
-  if (key == ' ' && !isDinoJumping) {
+  if (key == ' ' && !isDinoJumping) 
+  {
   dVelocity = -10;
   isDinoJumping = true;
   }
+  if(key == 'r')
+  {
+    dinoX = 50;
+    dinoY = 300;
+    dVelocity = 0;
+    isDinoJumping = false;
+    enemies.clear();
+    gameOver = false;
+    gameScore = 0;
+  }
+  
 }
+
+
 
 //checks for avatar colliding with cacti
 void crash()
@@ -69,6 +97,7 @@ void crash()
     if (get((int)c.x, (int)c.y) != 0 && rectIntersect(dinoX, dinoY, dinoSize, dinoSize, c.x, c.y, c.height, c.width))
     {
       gameOver = true;
+      
     }
 
   }
@@ -101,7 +130,7 @@ void cactiObstacles()
   //create obstacles
      if(frameCount % 60 == 0)
      {
-      enemies.add(new Cactus(width, 315, 20, 35));
+      enemies.add(new Cactus(width, 325, 20, 10));
      }
      
      for (int i = enemies.size() - 1; i >= 0; i--)
@@ -109,7 +138,13 @@ void cactiObstacles()
        Cactus c = enemies.get(i);
        c.refresh();
        c.screen();
+       if (c.x + c.width < 0) 
+       {
+        enemies.remove(i);
+       }
+     }
 }
+
 
 class Cactus
 {
@@ -126,7 +161,7 @@ class Cactus
   }
 
 void refresh(){
-  x-=speed;
+  x -= v;
 }
 
 void screen(){
