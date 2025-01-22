@@ -4,7 +4,9 @@
 //Clicky Dinosaur Capstone Final Project AEB
 // draw dino later?
 import java.util.*;
-//ArrayList<cactus> enemies;
+
+ArrayList<Cactus> enemies;
+
 float groundY = 200;
 
 float dGravity = 1;
@@ -15,20 +17,15 @@ float dVelocity = 0;
 float dinoJump = -10;
 boolean isDinoJumping = false; //determines if game continues (dino isn't jumping and hits obstacle, game over)
 
-//float cactiX = 1280;
-//float cactiY = 300;
-//float cactiSize = 20;
-//float cVelocity = 5;
-
-//float mls = millis();
-
 boolean gameOver = false;
-//int gameScore = 0;
+int gameScore = 0;
 
 void setup() {
     size(1280, 720);
     background(154, 206, 235);
-    //enemies = new ArrayList<cactus>();
+    enemies = new ArrayList<Cactus>();
+    //allows to keep tracl of when cacti leave the screen
+    frameRate(60);
 }
 
 void draw() 
@@ -38,11 +35,53 @@ void draw()
     line(0, 350, width, 350);
     
     //scoreboard for each object avoided
-    //fill(0);
-    //textSize(30);
-    //text("Score" + gameScore, 10, 20);
+    fill(0);
+    textSize(30);
+    text("Score" + gameScore, 10, 30);
     
-    //dino avatar
+    if(!gameOver)
+    {
+      dinoAvatar();
+    }
+     
+     //call function to create enemies
+     cactiObstacles();
+     
+     //call functions to check for crashes
+     crash();
+}
+
+//avatar jumps when space bar is pressed
+void keyPressed()
+{
+  if (key == ' ' && !isDinoJumping) {
+  dVelocity = -10;
+  isDinoJumping = true;
+  }
+}
+
+//checks for avatar colliding with cacti
+void crash()
+{
+  for(int cr = 0; cr < enemies.size(); cr++)
+  {
+    Cactus c = enemies.get(cr);
+    if (get((int)c.x, (int)c.y) != 0 && rectIntersect(dinoX, dinoY, dinoSize, dinoSize, c.x, c.y, c.height, c.width))
+    {
+      gameOver = true;
+    }
+
+  }
+}
+  boolean rectIntersect(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) 
+  {
+  return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
+  }
+
+
+void dinoAvatar()
+{
+  //dino avatar
     fill(0, 255, 0);
     rect(dinoX, dinoY, dinoSize, dinoSize);
     dVelocity += dGravity;
@@ -53,38 +92,43 @@ void draw()
       dinoY = 300;
       isDinoJumping = false;
     }
-     
-      //draw cactus
-      //fill(150, 0, 0);
-      //rect(cactiX, cactiY, cactiSize, 50);
-      //cactiX -= cVelocity;
-      
-      //if (cactiX <= 0){}
-      
-      
-      //every 20 seconds, calti speed increases by 1
-      //for (int i = 0; i > 100; i++) {
-        //if (mls == 20000){
-       // cVelocity++;
-        //}
-     // }
 }
 
-
-void keyPressed()
+void cactiObstacles()
 {
-  if (key == ' ' && !isDinoJumping) {
-  dVelocity = -10;
-  isDinoJumping = true;
-  }
+  //create obstacles
+     if(frameCount % 60 == 0)
+     {
+      enemies.add(new Cactus(width, 315, 20, 35));
+     }
+     
+     for (int i = enemies.size() - 1; i >= 0; i--)
+     {
+       Cactus c = enemies.get(i);
+       c.refresh();
+       c.screen();
 }
 
-class cactus{
+class Cactus
+{
+  float x, y, height, width;
+  float v;
   
-}
-//get() or set() function to check for enemies
-  //key pressed boolean or key pressed()?
+  Cactus(float x, float y, float height, float width)
+  {
+    this.x = x;
+    this.y = y;
+    this.height = height;
+    this.width = width;
+    this.v = 5;
+  }
 
-//void gameOver(){}
-//get() for color hit on object
-//enemy as own object
+void refresh(){
+  x-=speed;
+}
+
+void screen(){
+  fill(0, 50, 150);
+  rect(x, y, width, height);
+}
+}
